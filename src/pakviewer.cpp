@@ -59,7 +59,7 @@ pak_ExtractFile (const char *pakFile, const char *lumpName, char *outFile)
 		fread (&filepos, sizeof (int), 1, file);
 		fread (&filelen, sizeof (int), 1, file);
 
-		if (!strcmp (name, lumpName))
+		if (!mx_strcasecmp (name, lumpName))
 		{
 			FILE *out = fopen (outFile, "wb");
 			if (!out)
@@ -88,7 +88,7 @@ pak_ExtractFile (const char *pakFile, const char *lumpName, char *outFile)
 
 
 PAKViewer::PAKViewer (mxWindow *window)
-: mxWindow (window, 0, 0, 0, 0)
+: mxWindow (window, 0, 0, 0, 0, "", mxWindow::Normal)
 {
 	strcpy (d_pakFile, "");
 	strcpy (d_currLumpName, "");
@@ -180,7 +180,7 @@ PAKViewer::handleEvent (mxEvent *event)
 				OnPAKViewer ();
 				char e[16];
 
-				_splitpath (d_currLumpName, 0, 0, 0, e);
+				strncpy (e, mx_getextension (d_currLumpName), 16);
 				int mode = g_FileAssociation->getMode (&e[1]);
 				if (mode == -1)
 					return 1;

@@ -528,9 +528,12 @@ GlWindow::loadTexture (const char *filename, int name)
 
 	mxImage *image = 0;
 
-	if (strstr (filename, ".tga"))
+	char ext[16];
+        strcpy (ext, mx_getextension (filename));
+
+	if (!mx_strcasecmp (ext, ".tga"))
 		image = mxTgaRead (filename);
-	else if (strstr (_strlwr ((char *) filename), ".pcx"))
+	else if (!mx_strcasecmp (ext, ".pcx"))
 	{
 		mxImage *tmp = mxPcxRead (filename);
 		if (tmp)
@@ -761,7 +764,7 @@ void
 GlWindow::setBrightness (int value)
 {
 	d_bias = (float) value / 100.0f;
-	redraw ();
+//	redraw ();
 }
 
 

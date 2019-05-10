@@ -17,6 +17,7 @@
 //
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 //#include <ostream.h>
 #include <mx/mx.h>
 #include <mx/gl.h>
@@ -250,7 +251,7 @@ MD2Viewer::MD2Viewer ()
 #endif
 
 	// create the OpenGL window
-	glw = new GlWindow (this, 0, 0, 0, 0, "", mxWindow::Normal);
+	glw = new GlWindow (this, 0, 0, 0, 0, "glwindow", mxWindow::Normal);
 #ifdef WIN32
 	SetWindowLong ((HWND) glw->getHandle (), GWL_EXSTYLE, WS_EX_CLIENTEDGE);
 #endif

@@ -19,6 +19,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <mx/mx.h>
+#include <mx/mxPath.h>
 #include "PlayerModels.h"
 #include "GlWindow.h"
 #include "md2viewer.h"
@@ -84,7 +85,7 @@ PlayerModels::handleEvent (mxEvent *event)
 
 						strcpy (dir, g_qdir);
 						strcat (dir, label);
-						SetCurrentDirectory (dir);
+						mx_setcwd (dir);
 						strcat (dir, "\\tris.md2");
 						model = g_md2Viewer->glw->loadModel (dir, 0);
 						if (model)
